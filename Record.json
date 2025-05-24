@@ -1,0 +1,5 @@
+{
+  "example.com.": {"Type": "A", "Data": "1.2.3.4"},
+  "test.com.":    {"Type": "AAAA", "Data": "2607:f8b0:4005:805::200e"},
+  "alias.com.":   {"Type": "CNAME", "Data": "example.com."}
+}

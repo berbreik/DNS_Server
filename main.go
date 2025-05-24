@@ -2,6 +2,8 @@ package DNS
 
 import (
 	"fmt"
+	"github.com/google/gopacket"
+	"github.com/google/gopacket/layers"
 	"github.com/miekg/dns"
 	"log"
 	"net"
@@ -38,5 +40,17 @@ func main() {
 			fmt.Println("Failed to close the connection")
 		}
 	}(conn)
+
+	buf := make([]byte, 1024)
+
+	for {
+		n, clientaddr, err := conn.ReadFrom(buf)
+		if err != nil {
+			log.Printf("Read err %v\n", err)
+			continue
+		}
+		packet := gopacket.NewPacket(buf[:n], layers.LayerTypeDNS, gopacket.Default)
+
+	}
 
 }
